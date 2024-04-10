@@ -1,10 +1,9 @@
-export const routes = [
-  `v1/api/character/:id`,
-  `v1/api/characters`,
-  `v1/api/abilities`,
-  `v1/api/abilities/:name`,
-  `v1/api/items/:name`,
-  `v1/api/items`,
-  `v1/api/story`,
-  `v1/api/story/chapter/:chapterNumber`,
-]
+import express from "express";
+import { CharacterController } from "../controllers/character.controller";
+
+const router = express.Router();
+
+router.get('/characters', CharacterController.getCharacters);
+router.get('/characters/:id', CharacterController.getCharacterById);
+
+export default router;

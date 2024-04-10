@@ -2,6 +2,7 @@ import { Ability } from "./ability"
 
 export interface ICharacter {
   name: string,
+  id: number,
   rarity: string,
   identity: string,
   class: string,

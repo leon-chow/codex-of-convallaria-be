@@ -1,14 +1,25 @@
-import express from "express";
 
-const app = express();
+import { CharacterService } from "../services/character.service";
 
-// Display list of all Authors.
-exports.character_list = app.get('/', function (req, res) {
-  // implement character service, get the list of characters and return it
-  res.send("Hello World!");
-});
+export class CharacterController {
+  static async getCharacters(req: any, res: any) {
+    try {
+      const characters = await CharacterService.getAllCharacters();
+      res.json(characters);
+    } catch (err: any ) {
+      res.status(500).json({
+        error: err.message
+      });
+    }
+  }
 
-exports.character_detail = app.get('/', function (req, res) {
-  // implement character service, get the list of characters and return it
-  res.send("Hello World!");
-});
+  static async getCharacterById(req: any, res: any) {
+    try {
+      const characterId = +req.params.id;
+      const character = await CharacterService.getCharacterById(characterId);
+      res.json(character);
+    } catch (err: any) {
+      res.status(500).json({ error: err.message })
+    }
+  }
+}

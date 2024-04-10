@@ -3,6 +3,7 @@ import { ICharacter } from "../models/character"
 export const mockCharacters: ICharacter[] = [
   {
     name: "Gloria",
+    id: 15,
     rarity: "Legendary",
     identity: "Paladin of Truth",
     class: "Watcher",
@@ -38,8 +39,8 @@ export const mockCharacters: ICharacter[] = [
         ],
         tarot: [
           {
-            item: "The Moon",
-            description: "The moon tarot card provides extra HP and Def, which are great stats for Gloria",
+            item: "Judgement",
+            description: "The Judgement tarot card provides extra HP and Def, which are great stats for Gloria",
           }
         ],
         abilities: [
@@ -58,26 +59,64 @@ export const mockCharacters: ICharacter[] = [
       magDef: 58,
       speed: 215,
     },
-  }
+  },
+  {
+    name: "Auguste",
+    id: 25,
+    rarity: "Legendary",
+    identity: "Dark Executioner",
+    class: "Breaker",
+    weapons: ["Sword", "Katana", "Greatsword"],
+    faction: ["Union"],
+    japaneseVA: "Tokiome JVA",
+    releaseDate: "9/15/2023",
+    pixelImageUrl: "some image link",
+    profileImageUrl: "some other image link",
+    bio: "Sone corrupt executioner of the union or something like that",
+    abilities: [{
+      name: "Dark Slash",
+      energy: 5,
+      cooldown: 3,
+      description: "Cleaves in the direction he is facing",
+      range: "1",
+      height: "1-3",
+      target: "Multi",
+    }],
+    recommendations: [
+      {
+        weapons: [
+          {
+            item: "Sword",
+            description: "Best Weapon for Auguste",
+          }
+        ],
+        equipment: [
+          {
+            item: "Chest",
+            description: "Best chest piece for Auguste",
+          }
+        ],
+        tarot: [
+          {
+            item: "Death",
+            description: "The moon tarot card provides extra HP and Def, which are great stats for Gloria",
+          }
+        ],
+        abilities: [
+          {
+            item: "Dark Slash",
+            description: "Best in slot skill, deals a huge amount of AoE damage to whoever is in front of him",
+          }
+        ]
+      }
+    ],
+    baseStats: {
+      hp: 400,
+      atk: 225,
+      def: 89,
+      magAtk: 159,
+      magDef: 62,
+      speed: 209,
+    },
+  },
 ]
-
-interface IBaseStats {
-  hp?: number,
-  atk?: number,
-  def?: number,
-  magAtk?: number,
-  magDef?: number,
-  speed?: number,
-}
-
-interface IRecommendedGroup {
-  weapons?: IRecommendation[],
-  equipment?: IRecommendation[],
-  tarot?: IRecommendation[],
-  abilities?: IRecommendation[]
-}
-
-interface IRecommendation {
-  item: string,
-  description: string
-}
