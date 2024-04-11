@@ -8,4 +8,8 @@ export class CharacterService {
   static async getCharacterById(characterId: number) {
     return await mockCharacters.find((character) => character.id === characterId);
   }
+
+  static async getCharacterByName(characterName: string) {
+    return await mockCharacters.find((character) => character.name.toLowerCase() === characterName);
+  }
 }
