@@ -1,4 +1,4 @@
-import { Ability } from "./ability"
+import { IAbility } from "./ability"
 
 export interface ICharacter {
   name: string,
@@ -13,7 +13,7 @@ export interface ICharacter {
   pixelImageUrl: string,
   profileImageUrl: string,
   bio: string,
-  abilities: Ability[],
+  abilities: IAbility[],
   recommendations: IRecommendedGroup[],
   baseStats: IBaseStats,
 }

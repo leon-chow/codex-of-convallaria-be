@@ -1,5 +1,5 @@
 import express from "express"
-import routes from "./src/routes/character.routes";
+import routes from "./src/routes/routes";
 import dotenv from "dotenv";
 
 // create express app

@@ -1,4 +1,5 @@
-export interface Ability {
+export interface IAbility {
+  id: number,
   name: string,
   energy: number,
   cooldown: number,

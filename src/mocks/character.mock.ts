@@ -15,6 +15,7 @@ export const mockCharacters: ICharacter[] = [
     profileImageUrl: "some other image link",
     bio: "Sone paladin of truth or something like that",
     abilities: [{
+      id: 1,
       name: "Spear of Longus",
       energy: 5,
       cooldown: 3,
@@ -74,6 +75,7 @@ export const mockCharacters: ICharacter[] = [
     profileImageUrl: "some other image link",
     bio: "Sone corrupt executioner of the union or something like that",
     abilities: [{
+      id: 2,
       name: "Dark Slash",
       energy: 5,
       cooldown: 3,
