@@ -1,13 +1,14 @@
 export interface IItem {
+  id: number,
   name: string,
-  description: RankingDescription[],
+  description: IRankingDescription,
   rarity: string,
-  classification: string,
-  location: string,
+  type: string,
+  location: string[],
   imageUrl: string,
 }
 
-interface RankingDescription {
+interface IRankingDescription {
   numberOfStars: number,
   description: string,
 }
