@@ -1,6 +1,8 @@
 import express from "express"
 import routes from "./src/routes/routes";
 import dotenv from "dotenv";
+import { BASE_PATH } from "./src/utils/constants";
+import { includeBasePath } from "./src/middleware/middleware";
 
 // create express app
 dotenv.config();
@@ -10,8 +12,12 @@ const PORT = process.env.PORT || 5000;
 // middleware
 app.use(express.json());
 
+// middleware for logging, authentication and error handling here
+
 // routes
-app.use(routes);
+app.use(includeBasePath());
+app.use(BASE_PATH, routes);
+
 app.get('/', function (_, res) {
   res.status(200).send("<h1> Welcome to the Codex of Convallaria Backend! </h1>");
 });
