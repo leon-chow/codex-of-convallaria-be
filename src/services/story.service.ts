@@ -12,8 +12,6 @@ export class StoryService {
   }
 
   static async getChapterByName(chapterName: string) {
-    console.log(chapterName);
-    console.log(desluggifyText(chapterName));
     return await mockChapters.find((chapter: IStory) => chapter.title.toLowerCase().includes(desluggifyText(chapterName.toLowerCase())));
   }
 }

@@ -5,7 +5,7 @@ export class ItemController {
   static async getItems(req: any, res: any) {
     try {
       const items = await ItemService.getAllItems();
-      res.json(items);
+      res.status(200).json(items);
     } catch (err: any ) {
       res.status(500).json({
         error: err.message
@@ -20,7 +20,7 @@ export class ItemController {
       if (!item) {
         res.status(400).json({ error: `Item with ID ${itemId} does not exist!` })
       }
-      res.json(item);
+      res.status(200).json(item);
     } catch (err: any) {
       res.status(500).json({ error: err.message })
     }
@@ -33,7 +33,7 @@ export class ItemController {
       if (item.length === 0) {
         res.status(400).json({ error: `No items with category ${itemCategory} were found!` })
       } else {
-        res.json(item);
+        res.status(200).json(item);
       }
     } catch (err: any) {
       res.status(500).json({ error: err.message })

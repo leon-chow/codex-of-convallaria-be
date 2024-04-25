@@ -5,7 +5,7 @@ export class StoryController {
   static async getAllChapters(req: any, res: any) {
     try {
       const chapters = await StoryService.getAllChapters();
-      res.json(chapters);
+      res.status(200).json(chapters);
     } catch (err: any ) {
       res.status(500).json({
         error: err.message
@@ -20,7 +20,7 @@ export class StoryController {
       if (!chapter) {
         res.status(400).json({ error: `Chapter with ID ${chapterId} does not exist!` })
       }
-      res.json(chapter);
+      res.status(200).json(chapter);
     } catch (err: any) {
       res.status(500).json({ error: err.message })
     }
@@ -33,7 +33,7 @@ export class StoryController {
       if (!chapter) {
         res.status(400).json({ error: `No chapter with name ${chapterName} was found!` })
       } else {
-        res.json(chapter);
+        res.status(200).json(chapter);
       }
     } catch (err: any) {
       res.status(500).json({ error: err.message })

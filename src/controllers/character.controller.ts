@@ -5,7 +5,7 @@ export class CharacterController {
   static async getCharacters(req: any, res: any) {
     try {
       const characters = await CharacterService.getAllCharacters();
-      res.json(characters);
+      res.status(200).json(characters);
     } catch (err: any ) {
       res.status(500).json({
         error: err.message
@@ -20,7 +20,7 @@ export class CharacterController {
       if (!character) {
         res.status(400).json({ error: `Character with ID ${characterId} does not exist!` })
       }
-      res.json(character);
+      res.status(200).json(character);
     } catch (err: any) {
       res.status(500).json({ error: err.message })
     }
@@ -33,7 +33,7 @@ export class CharacterController {
       if (!character) {
         res.status(400).json({ error: `Character with name ${characterName} does not exist!` })
       }
-      res.json(character);
+      res.status(200).json(character);
     } catch (err: any) {
       res.status(500).json({ error: err.message });
     }

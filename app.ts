@@ -12,11 +12,11 @@ app.use(express.json());
 
 // routes
 app.use(routes);
-app.get('/', function (req, res) {
-  res.send("Welcome to the Codex of Convallaria Backend!");
+app.get('/', function (_, res) {
+  res.status(200).send("<h1> Welcome to the Codex of Convallaria Backend! </h1>");
 });
 
-app.use((req, res, next) => {
+app.use((_, res) => {
   res.status(404).send("ERROR: That path doesn't exist!")
 })
 

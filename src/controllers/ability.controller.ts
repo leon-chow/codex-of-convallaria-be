@@ -5,7 +5,7 @@ export class AbilityController {
   static async getAbilities(req: any, res: any) {
     try {
       const abilities = await AbilityService.getAllAbilities();
-      res.json(abilities);
+      res.status(200).json(abilities);
     } catch (err: any ) {
       res.status(500).json({
         error: err.message
@@ -20,7 +20,7 @@ export class AbilityController {
       if (!ability) {
         res.status(400).json({ error: `Ability with ID ${abilityId} does not exist!` })
       }
-      res.json(ability);
+      res.status(200).json(ability);
     } catch (err: any) {
       res.status(500).json({ error: err.message })
     }
