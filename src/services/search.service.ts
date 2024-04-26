@@ -8,12 +8,15 @@
 
 import { ParsedUrlQuery } from "querystring";
 import { mockCharacters } from "../mocks/character.mock";
-import { ICharacter, ICharacterFilters } from "../models/character";
-import { CharacterService } from "./character.service";
+import { ICharacter } from "../models/character";
 import { popularSearches } from "../mocks/popularSearches.mock";
 import { compareDates } from "../utils/string";
+import { mockItems } from "../mocks/items.mock";
+import { mockAbilities } from "../mocks/abilities.mock";
+import { mockChapters } from "../mocks/stories.mock";
 
 export class SearchService {
+  // characters
   static async searchCharactersByFilters(urlQuery?: ParsedUrlQuery) {
     let characters = mockCharacters;
     for (const param in urlQuery) {
@@ -26,7 +29,7 @@ export class SearchService {
           return character[param].some(faction => urlQuery[param]?.includes(faction));
         });
       } else if (param === "releaseDate") {
-        const occurrence = urlQuery.occurrence;
+        const occurrence = urlQuery.releaseDateOccurence;
         const releaseDate = urlQuery.releaseDate as string || "";
         const filteredCharacters: ICharacter[] = [];
         for (const character of characters) {
@@ -40,6 +43,53 @@ export class SearchService {
     return characters;
   }
 
+  // story
+  // TODO: Come back later
+  /*static async searchStoryByFilters(urlQuery?: ParsedUrlQuery) {
+  
+  }
+
+  export interface IStory {
+    id: number;
+    title: string;
+    description: string;
+    subChapters: IChapter[];
+    rewards?: IReward[];
+    materials: IMaterial[];
+    requirements: IRequirement[];
+  }*/
+
+  // abilities
+  static async searchAbilitiesByFilters(urlQuery?: ParsedUrlQuery) {
+    let abilities = mockAbilities;
+    for (const param in urlQuery) {
+      if (param === "energy" || param === "range" || param === "cooldown" || param === "height" || param === "target") {
+        abilities = abilities.filter((ability) => {
+          return ability[param] === Number(urlQuery[param]);
+        });
+      } 
+    }
+    return abilities;
+  }
+
+  // items
+  static async searchItemsByFilters(urlQuery?: ParsedUrlQuery) {
+    let items = mockItems;
+    for (const param in urlQuery) {
+      if (param === "rarity" || param === "type") {
+        items = items.filter((item) => {
+          return item[param]?.toLowerCase() === urlQuery[param];
+        });
+      } else if (param === "location") {
+        items = items.filter((item) => {
+          return item[param].some(location => urlQuery[param]?.includes(location));
+        });
+      }
+    }
+    return items;
+  }
+
+  // misc
   static async getPopularSearches() {
     return popularSearches;
   }
