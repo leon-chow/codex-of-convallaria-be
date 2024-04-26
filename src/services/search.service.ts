@@ -63,11 +63,15 @@ export class SearchService {
   static async searchAbilitiesByFilters(urlQuery?: ParsedUrlQuery) {
     let abilities = mockAbilities;
     for (const param in urlQuery) {
-      if (param === "energy" || param === "range" || param === "cooldown" || param === "height" || param === "target") {
+      if (param === "energy" || param === "cooldown") {
         abilities = abilities.filter((ability) => {
           return ability[param] === Number(urlQuery[param]);
         });
-      } 
+      } else if (param === "range" || param === "height" || param === "target") {
+        abilities = abilities.filter((ability) => {
+          return ability[param].toLowerCase() === urlQuery[param];
+        });
+      }
     }
     return abilities;
   }

@@ -30,5 +30,7 @@ router.get('/story/:chapterName([a-zA-Z]+)', StoryController.getChapterByName);
 
 // search routes
 router.get('/search/characters', SearchController.getFilteredCharacters);
+router.get('/search/abilities', SearchController.getFilteredAbilities);
+router.get('/search/items', SearchController.getFilteredItems);
 
 export default router;
