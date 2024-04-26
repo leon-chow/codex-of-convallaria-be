@@ -3,6 +3,7 @@ import { CharacterController } from "../controllers/character.controller";
 import { AbilityController } from "../controllers/ability.controller";
 import { ItemController } from "../controllers/item.controller";
 import { StoryController } from "../controllers/story.controller";
+import { SearchController } from "../controllers/search.controller";
 
 const router = express.Router();
 
@@ -26,5 +27,8 @@ router.get('/story', StoryController.getAllChapters);
 router.get('/story/:id(\\d+)', StoryController.getChapterById);
 // TODO: Fix
 router.get('/story/:chapterName([a-zA-Z]+)', StoryController.getChapterByName);
+
+// search routes
+router.get('/search/characters', SearchController.getFilteredCharacters);
 
 export default router;

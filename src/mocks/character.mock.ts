@@ -3,6 +3,7 @@ import { ICharacter } from "../models/character"
 export const mockCharacters: ICharacter[] = [
   {
     name: "Gloria",
+    gender: "Female",
     id: 15,
     rarity: "Legendary",
     identity: "Paladin of Truth",
@@ -60,10 +61,12 @@ export const mockCharacters: ICharacter[] = [
       magDef: 58,
       speed: 215,
     },
+    bannerType: "Standard",
   },
   {
     name: "Auguste",
     id: 25,
+    gender: "Male",
     rarity: "Legendary",
     identity: "Dark Executioner",
     class: "Breaker",
@@ -120,5 +123,6 @@ export const mockCharacters: ICharacter[] = [
       magDef: 62,
       speed: 209,
     },
+    bannerType: "Standard",
   },
 ]

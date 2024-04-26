@@ -1,14 +1,31 @@
-import express from "express";
 
-const app = express();
+import { CharacterService } from "../services/character.service";
+import { SearchService } from "../services/search.service";
+import url from "url";
 
-// Display list of all Authors.
-exports.character_list = app.get('/', function (req, res) {
-  // implement character service, get the list of characters and return it
-  res.send("Hello World!");
-});
+export class SearchController {
+  static async getFilteredCharacters(req: any, res: any) {
+    const urlParams = url.parse(req.url, true).query;
 
-exports.character_detail = app.get('/', function (req, res) {
-  // implement character service, get the list of characters and return it
-  res.send("Hello World!");
-});
+    try {
+      const characters = await SearchService.searchCharactersByFilters(urlParams);
+      if (characters) {
+        res.status(200).json(characters);
+      }
+    } catch (err: any ) {
+      res.status(500).json({
+        error: err.message
+      });
+    }
+  }
+  static async getPopularSearches(req: any, res: any) {
+    try {
+      const popularSearches = await SearchService.getPopularSearches();
+      res.status(200).json(popularSearches);
+    } catch (err: any) {
+      res.status(500).json({
+        error: err.message
+      })
+    }
+  }
+}
