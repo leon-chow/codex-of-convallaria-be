@@ -1,7 +1,6 @@
 const accessToken = process.env.ACCESS_TOKEN_SECRET as string;
 
 export const authenticateToken = (req: any, res: any, next: any) => {
-  console.log("Try to authenticate...");
   const token = req.headers.authorization && req.headers.authorization.split(' ')[1];
   if (!token) {
     return res.status(401).json("Unauthorized user!");

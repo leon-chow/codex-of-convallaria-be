@@ -20,24 +20,26 @@ export class SearchService {
   static async searchCharactersByFilters(urlQuery?: ParsedUrlQuery) {
     let characters = mockCharacters;
     for (const param in urlQuery) {
-      if (param === "gender" || param === "class" || param ==="rarity" || param === "bannerType") {
-        characters = characters.filter((character) => {
-          return character[param]?.toLowerCase() === urlQuery[param];
-        });
-      } else if (param === "faction") {
-        characters = characters.filter((character) => {
-          return character[param].some(faction => urlQuery[param]?.includes(faction));
-        });
-      } else if (param === "releaseDate") {
-        const occurrence = urlQuery.releaseDateOccurence;
-        const releaseDate = urlQuery.releaseDate as string || "";
-        const filteredCharacters: ICharacter[] = [];
-        for (const character of characters) {
-          if (compareDates(character.releaseDate, releaseDate) === occurrence) {
-            filteredCharacters.push(character);
-          } 
-        };
-        characters = filteredCharacters;
+      if (urlQuery[param]) {
+        if ((param === "gender" || param === "class" || param ==="rarity" || param === "bannerType") && urlQuery[param]) {
+          characters = characters.filter((character) => {
+            return character[param]?.toLowerCase() === urlQuery[param];
+          });
+        } else if (param === "faction" && urlQuery[param]) {
+          characters = characters.filter((character) => {
+            return character[param].some(faction => urlQuery[param]?.includes(faction));
+          });
+        } else if (param === "releaseDate" && urlQuery[param]) {
+          const occurrence = urlQuery.releaseDateOccurence;
+          const releaseDate = urlQuery.releaseDate as string || "";
+          const filteredCharacters: ICharacter[] = [];
+          for (const character of characters) {
+            if (compareDates(character.releaseDate, releaseDate) === occurrence) {
+              filteredCharacters.push(character);
+            } 
+          };
+          characters = filteredCharacters;
+        }
       }
     }
     return characters;
@@ -63,11 +65,11 @@ export class SearchService {
   static async searchAbilitiesByFilters(urlQuery?: ParsedUrlQuery) {
     let abilities = mockAbilities;
     for (const param in urlQuery) {
-      if (param === "energy" || param === "cooldown") {
+      if ((param === "energy" || param === "cooldown") && urlQuery[param]) {
         abilities = abilities.filter((ability) => {
           return ability[param] === Number(urlQuery[param]);
         });
-      } else if (param === "range" || param === "height" || param === "target") {
+      } else if ((param === "range" || param === "height" || param === "target") && urlQuery[param]) {
         abilities = abilities.filter((ability) => {
           return ability[param].toLowerCase() === urlQuery[param];
         });
@@ -80,11 +82,11 @@ export class SearchService {
   static async searchItemsByFilters(urlQuery?: ParsedUrlQuery) {
     let items = mockItems;
     for (const param in urlQuery) {
-      if (param === "rarity" || param === "type") {
+      if ((param === "rarity" || param === "type") && urlQuery[param]) {
         items = items.filter((item) => {
           return item[param]?.toLowerCase() === urlQuery[param];
         });
-      } else if (param === "location") {
+      } else if (param === "location" && urlQuery[param]) {
         items = items.filter((item) => {
           return item[param].some(location => urlQuery[param]?.includes(location));
         });

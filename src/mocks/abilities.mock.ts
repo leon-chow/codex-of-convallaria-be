@@ -4,7 +4,7 @@ export const mockAbilities: IAbility[] = [
   {
     id: 2,
     name: "Dark Slash",
-    energy: 5,
+    energy: 2,
     cooldown: 3,
     description: "Cleaves in the direction he is facing",
     range: "1",
@@ -14,7 +14,7 @@ export const mockAbilities: IAbility[] = [
   {
     id: 1,
     name: "Spear of Longus",
-    energy: 5,
+    energy: 3,
     cooldown: 3,
     description: "Hurls a banner on the battlefield",
     range: "3-5",

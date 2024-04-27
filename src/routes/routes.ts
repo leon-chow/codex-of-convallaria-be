@@ -19,7 +19,6 @@ router.get('/abilities/:id(\\d+)', AbilityController.getAbilityById);
 // item routes
 router.get('/items', ItemController.getItems);
 router.get('/items/:id(\\d+)', ItemController.getItemById);
-router.get('/items/:id(\\d+)', ItemController.getItemsByCategory);
 router.get('/items/:category([a-zA-Z]+)', ItemController.getItemsByCategory);
 
 // chapter routes
