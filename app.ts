@@ -1,11 +1,12 @@
 import express from "express"
 import routes from "./src/routes/routes";
-import dotenv from "dotenv";
+import dotenv from "dotenv/config";
 import { BASE_PATH } from "./src/utils/constants";
-import { includeBasePath } from "./src/middleware/middleware";
+import { authenticateToken } from "./src/middleware/middleware";
 
 // create express app
-dotenv.config();
+dotenv
+
 const app = express();
 const PORT = process.env.PORT || 5000;
 
@@ -13,9 +14,10 @@ const PORT = process.env.PORT || 5000;
 app.use(express.json());
 
 // middleware for logging, authentication and error handling here
+app.use(authenticateToken);
+
 
 // routes
-app.use(includeBasePath());
 app.use(BASE_PATH, routes);
 
 app.get('/', function (_, res) {

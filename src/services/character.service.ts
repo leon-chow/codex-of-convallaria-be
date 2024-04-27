@@ -10,6 +10,6 @@ export class CharacterService {
   }
 
   static async getCharacterByName(characterName: string) {
-    return await mockCharacters.find((character) => character.name.toLowerCase() === characterName);
+    return await mockCharacters.find((character) => character.name.toLowerCase() === characterName.toLowerCase());
   }
 }
