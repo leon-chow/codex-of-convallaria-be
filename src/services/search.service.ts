@@ -22,12 +22,13 @@ export class SearchService {
     for (const param in urlQuery) {
       if (urlQuery[param]) {
         if ((param === "gender" || param === "class" || param ==="rarity" || param === "bannerType") && urlQuery[param]) {
+          const match = urlQuery[param] as string;
           characters = characters.filter((character) => {
-            return character[param]?.toLowerCase() === urlQuery[param];
+            return character[param]?.toLowerCase() === match.toLowerCase();
           });
         } else if (param === "faction" && urlQuery[param]) {
           characters = characters.filter((character) => {
-            return character[param].some(faction => urlQuery[param]?.includes(faction));
+            return character[param].some(faction => urlQuery[param]?.includes(faction.toLowerCase()));
           });
         } else if (param === "releaseDate" && urlQuery[param]) {
           const occurrence = urlQuery.releaseDateOccurence;
@@ -71,7 +72,8 @@ export class SearchService {
         });
       } else if ((param === "range" || param === "height" || param === "target") && urlQuery[param]) {
         abilities = abilities.filter((ability) => {
-          return ability[param].toLowerCase() === urlQuery[param];
+          const match = urlQuery[param] as string;
+          return ability[param].toLowerCase() === match.toLowerCase();
         });
       }
     }
@@ -84,11 +86,12 @@ export class SearchService {
     for (const param in urlQuery) {
       if ((param === "rarity" || param === "type") && urlQuery[param]) {
         items = items.filter((item) => {
-          return item[param]?.toLowerCase() === urlQuery[param];
+          const match = urlQuery[param] as string;
+          return item[param]?.toLowerCase() === match.toLowerCase();
         });
       } else if (param === "location" && urlQuery[param]) {
         items = items.filter((item) => {
-          return item[param].some(location => urlQuery[param]?.includes(location));
+          return item[param].some(location => urlQuery[param]?.includes(location.toLowerCase()));
         });
       }
     }

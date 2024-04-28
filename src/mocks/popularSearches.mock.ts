@@ -2,11 +2,11 @@ import { ILink } from "../models/link";
 
 export const popularSearches: ILink[] = [
   {
-    src: "random link",
+    src: "auguste-link-1",
     text: "Auguste",
   },
   {
-    src: "random link 2",
+    src: "gloria-link-1",
     text: "Gloria"
   },
   {

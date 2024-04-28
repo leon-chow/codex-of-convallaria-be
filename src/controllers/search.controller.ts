@@ -1,5 +1,4 @@
 
-import { CharacterService } from "../services/character.service";
 import { SearchService } from "../services/search.service";
 import url from "url";
 
